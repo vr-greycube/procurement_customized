@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include procurement_customized *.css
+recursive-include procurement_customized *.csv
+recursive-include procurement_customized *.html
+recursive-include procurement_customized *.ico
+recursive-include procurement_customized *.js
+recursive-include procurement_customized *.json
+recursive-include procurement_customized *.md
+recursive-include procurement_customized *.png
+recursive-include procurement_customized *.py
+recursive-include procurement_customized *.svg
+recursive-include procurement_customized *.txt
+recursive-exclude procurement_customized *.pyc
