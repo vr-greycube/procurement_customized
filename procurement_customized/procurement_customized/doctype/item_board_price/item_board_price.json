@@ -84,6 +84,7 @@
    "fieldname": "actual_price_with_wastage",
    "fieldtype": "Currency",
    "label": "Actual Price With Wastage",
+   "precision": "3",
    "read_only": 1
   },
   {
@@ -94,45 +95,50 @@
   {
    "fieldname": "total_price_actual_wastage_processing",
    "fieldtype": "Currency",
-   "label": "Total Price ",
+   "label": "Total Price  (Actual price with wastage + Processing share)",
+   "precision": "3",
    "read_only": 1
   },
   {
    "fieldname": "total_roundup",
    "fieldtype": "Currency",
    "label": "Total Roundup",
+   "precision": "0",
    "read_only": 1
   },
   {
    "fieldname": "finished_goods_tax",
    "fieldtype": "Percent",
-   "label": "Finished Goods Tax"
+   "label": "Finished Goods Tax %"
   },
   {
    "fieldname": "total_with_fg_tax",
    "fieldtype": "Currency",
    "label": "Total with FG Tax",
+   "precision": "3",
    "read_only": 1
   },
   {
    "fieldname": "raw_material_tax",
    "fieldtype": "Percent",
-   "label": "Raw Material Tax "
+   "label": "Raw Material Tax %"
   },
   {
    "fieldname": "process_price_per_unit",
    "fieldtype": "Currency",
    "label": "Process Price Per Unit",
+   "precision": "3",
    "read_only": 1
   },
   {
    "fieldname": "raw_material_per_unit",
    "fieldtype": "Currency",
    "label": "Raw Material Per Unit",
+   "precision": "3",
    "read_only": 1
   }
  ],
- "modified": "2021-05-14 19:34:38.196278",
+ "modified": "2021-05-14 19:41:34.883899",
  "modified_by": "Administrator",
  "module": "Procurement Customized",
  "name": "Item Board Price",
