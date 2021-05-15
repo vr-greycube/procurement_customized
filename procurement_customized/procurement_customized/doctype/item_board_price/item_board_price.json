@@ -1,0 +1,181 @@
+{
+ "autoname": "format:{item}-{board_price_per_kg}",
+ "creation": "2021-05-14 19:23:55.646522",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "item",
+  "box_name",
+  "board_price_per_kg",
+  "ups",
+  "length",
+  "breadth",
+  "gsm",
+  "weight",
+  "wastage",
+  "actual_price_with_wastage",
+  "processing_share",
+  "total_price_actual_wastage_processing",
+  "total_roundup",
+  "finished_goods_tax",
+  "total_with_fg_tax",
+  "raw_material_tax",
+  "process_price_per_unit",
+  "raw_material_per_unit"
+ ],
+ "fields": [
+  {
+   "fieldname": "item",
+   "fieldtype": "Link",
+   "label": "Item",
+   "options": "Item",
+   "reqd": 1,
+   "set_only_once": 1
+  },
+  {
+   "fieldname": "board_price_per_kg",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "in_preview": 1,
+   "in_standard_filter": 1,
+   "label": "Board Price Per Kg",
+   "reqd": 1,
+   "set_only_once": 1
+  },
+  {
+   "fieldname": "box_name",
+   "fieldtype": "Data",
+   "label": "Box Name"
+  },
+  {
+   "fieldname": "ups",
+   "fieldtype": "Float",
+   "label": "UPS"
+  },
+  {
+   "fieldname": "length",
+   "fieldtype": "Float",
+   "label": "Length"
+  },
+  {
+   "fieldname": "breadth",
+   "fieldtype": "Float",
+   "label": "Breadth"
+  },
+  {
+   "fieldname": "gsm",
+   "fieldtype": "Float",
+   "label": "GSM"
+  },
+  {
+   "fieldname": "weight",
+   "fieldtype": "Float",
+   "label": "Weight",
+   "precision": "1",
+   "read_only": 1
+  },
+  {
+   "fieldname": "wastage",
+   "fieldtype": "Float",
+   "label": "Wastage"
+  },
+  {
+   "fieldname": "actual_price_with_wastage",
+   "fieldtype": "Currency",
+   "label": "Actual Price With Wastage",
+   "read_only": 1
+  },
+  {
+   "fieldname": "processing_share",
+   "fieldtype": "Float",
+   "label": "Processing Share"
+  },
+  {
+   "fieldname": "total_price_actual_wastage_processing",
+   "fieldtype": "Currency",
+   "label": "Total Price ",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_roundup",
+   "fieldtype": "Currency",
+   "label": "Total Roundup",
+   "read_only": 1
+  },
+  {
+   "fieldname": "finished_goods_tax",
+   "fieldtype": "Percent",
+   "label": "Finished Goods Tax"
+  },
+  {
+   "fieldname": "total_with_fg_tax",
+   "fieldtype": "Currency",
+   "label": "Total with FG Tax",
+   "read_only": 1
+  },
+  {
+   "fieldname": "raw_material_tax",
+   "fieldtype": "Percent",
+   "label": "Raw Material Tax "
+  },
+  {
+   "fieldname": "process_price_per_unit",
+   "fieldtype": "Currency",
+   "label": "Process Price Per Unit",
+   "read_only": 1
+  },
+  {
+   "fieldname": "raw_material_per_unit",
+   "fieldtype": "Currency",
+   "label": "Raw Material Per Unit",
+   "read_only": 1
+  }
+ ],
+ "modified": "2021-05-14 19:34:38.196278",
+ "modified_by": "Administrator",
+ "module": "Procurement Customized",
+ "name": "Item Board Price",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Item Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Accounts Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}
