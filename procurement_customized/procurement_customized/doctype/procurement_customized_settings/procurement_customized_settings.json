@@ -1,0 +1,60 @@
+{
+ "creation": "2021-05-14 19:59:08.379860",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "material_transfer_from_warehouse",
+  "material_transfer_to_warehouse"
+ ],
+ "fields": [
+  {
+   "fieldname": "material_transfer_from_warehouse",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Material Transfer From Warehouse",
+   "options": "Warehouse",
+   "reqd": 1
+  },
+  {
+   "fieldname": "material_transfer_to_warehouse",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Material Transfer To Warehouse",
+   "options": "Warehouse",
+   "reqd": 1
+  }
+ ],
+ "issingle": 1,
+ "modified": "2021-05-14 19:59:26.705014",
+ "modified_by": "Administrator",
+ "module": "Procurement Customized",
+ "name": "Procurement Customized Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "Accounts Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}
