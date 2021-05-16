@@ -14,6 +14,7 @@
   "gsm",
   "weight",
   "wastage",
+  "column_break_10",
   "actual_price_with_wastage",
   "processing_share",
   "total_price_actual_wastage_processing",
@@ -138,9 +139,13 @@
    "label": "Raw Material Per Unit",
    "precision": "3",
    "read_only": 1
+  },
+  {
+   "fieldname": "column_break_10",
+   "fieldtype": "Column Break"
   }
  ],
- "modified": "2021-05-14 20:06:50.940638",
+ "modified": "2021-05-15 14:30:32.029879",
  "modified_by": "Administrator",
  "module": "Procurement Customized",
  "name": "Item Board Price",
