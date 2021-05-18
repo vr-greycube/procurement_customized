@@ -35,11 +35,11 @@ def get_data():
             "label": _("Reports"),
             "items": [
                 {
-                    "name": "Item Fifo Ledger",
+                    "name": "Item FIFO Ledger",
                     "type": "report",
                     "module_name": "Procurement Customized",
-                    "label": _("Item Fifo Ledger"),
-                    "route": "#query-report/Item Fifo Ledger",
+                    "label": _("Item FIFO Ledger"),
+                    "route": "#query-report/Item FIFO Ledger",
                 },
             ],
         },

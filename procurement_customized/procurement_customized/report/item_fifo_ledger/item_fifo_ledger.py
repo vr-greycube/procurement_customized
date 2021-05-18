@@ -13,77 +13,6 @@ def execute(filters=None):
     return columns, data
 
 
-def get_columns():
-    return [
-        {
-            "label": _("PO Date"),
-            "fieldname": "po_date",
-            "fieldtype": "Date",
-            "width": 90,
-        },
-        {
-            "label": _("PO #"),
-            "fieldname": "po_name",
-            "fieldtype": "Data",
-            "width": 180,
-        },
-        {
-            "label": _("PO Qty"),
-            "fieldname": "qty",
-            "fieldtype": "Int",
-            "width": 90,
-        },
-        {
-            "label": _("Rate"),
-            "fieldname": "rate",
-            "fieldtype": "Currency",
-            "width": 90,
-        },
-        {
-            "label": _("TD Received Qty"),
-            "fieldname": "received_qty",
-            "fieldtype": "Int",
-            "width": 90,
-        },
-        {
-            "label": _("TD Utilized Qty"),
-            "fieldname": "td_utilized",
-            "fieldtype": "Int",
-            "width": 90,
-        },
-        {
-            "label": _("Utilized PO#"),
-            "fieldname": "utilized_po",
-            "fieldtype": "Data",
-            "width": 190,
-        },
-        {
-            "label": _("Balance Qty"),
-            "fieldname": "balance_qty",
-            "fieldtype": "Int",
-            "width": 90,
-        },
-        {
-            "label": _("Cum. Balance"),
-            "fieldname": "cum_balance_qty",
-            "fieldtype": "Int",
-            "width": 90,
-        },
-        {
-            "label": _("Utilized PO Value"),
-            "fieldname": "utilized_po_value",
-            "fieldtype": "Currency",
-            "width": 90,
-        },
-        {
-            "label": _("Balance Value"),
-            "fieldname": "balance_value",
-            "fieldtype": "Currency",
-            "width": 90,
-        },
-    ]
-
-
 def get_data(filters):
     # PO DATE	Po No	Po Qty	Rate	Till date recived qty	Till date utilized qty
     # Utilized PO number 	Balance Qty	Cummulative Balance	Total po value	Utilized qty po vlaue	Bal vlaue
@@ -94,8 +23,8 @@ def get_data(filters):
         po.name po_name,
         poi.qty qty,
         poi.rate,
-        r.qty received_qty,
-        poi.qty - r.qty balance_qty,
+        coalesce(r.qty,0) received_qty,
+        poi.qty - coalesce(r.qty,0) balance_qty,
         poi.qty * poi.rate total_value
     from 
         `tabPurchase Order` po
@@ -116,6 +45,7 @@ def get_data(filters):
     where 
         po.docstatus = 1 
         and poi.item_code = %(item)s
+    order by po.transaction_date, po.creation
     """,
         filters,
         as_dict=True,
@@ -126,15 +56,15 @@ def get_data(filters):
 
     for d in out:
         d.utilized_po, d.td_utilized, d.cum_balance_qty = [], 0, 0
-        cumulative_balance += d.balance_qty
+        cumulative_balance += d.get("balance_qty", 0)
         d.cum_balance_qty += cumulative_balance
-        while utilized and d.qty > d.td_utilized:
+        while utilized and d.received_qty > d.td_utilized:
             d.utilized_po.append(cstr(utilized[0].remarks) or "?")
-            if (d.qty - d.td_utilized) > utilized[0].transfer_qty:
+            if (d.received_qty - d.td_utilized) > utilized[0].transfer_qty:
                 d.td_utilized += utilized.pop(0).transfer_qty
             else:
-                utilized[0].transfer_qty -= d.qty - d.td_utilized
-                d.td_utilized = d.qty
+                utilized[0].transfer_qty -= d.received_qty - d.td_utilized
+                d.td_utilized = d.received_qty
         d.utilized_po = ", ".join(d.utilized_po)
         d.utilized_po_value = d.td_utilized * d.rate
         d.balance_value = d.total_value - d.utilized_po_value
@@ -170,3 +100,75 @@ def get_utilized(filters):
         filters,
         as_dict=True,
     )
+
+
+def get_columns():
+    return [
+        {
+            "label": _("PO Date"),
+            "fieldname": "po_date",
+            "fieldtype": "Date",
+            "width": 90,
+        },
+        {
+            "label": _("PO #"),
+            "fieldname": "po_name",
+            "fieldtype": "Link",
+            "options": "Purchase Order",
+            "width": 180,
+        },
+        {
+            "label": _("PO Qty"),
+            "fieldname": "qty",
+            "fieldtype": "Int",
+            "width": 70,
+        },
+        {
+            "label": _("Rate"),
+            "fieldname": "rate",
+            "fieldtype": "Currency",
+            "width": 90,
+        },
+        {
+            "label": _("Till Date Received Qty"),
+            "fieldname": "received_qty",
+            "fieldtype": "Int",
+            "width": 120,
+        },
+        {
+            "label": _("Till Date Utilized Qty"),
+            "fieldname": "td_utilized",
+            "fieldtype": "Int",
+            "width": 120,
+        },
+        {
+            "label": _("Utilized PO#"),
+            "fieldname": "utilized_po",
+            "fieldtype": "Data",
+            "width": 190,
+        },
+        {
+            "label": _("Balance Qty"),
+            "fieldname": "balance_qty",
+            "fieldtype": "Int",
+            "width": 90,
+        },
+        {
+            "label": _("Cum. Balance"),
+            "fieldname": "cum_balance_qty",
+            "fieldtype": "Int",
+            "width": 90,
+        },
+        {
+            "label": _("Utilized PO Value"),
+            "fieldname": "utilized_po_value",
+            "fieldtype": "Currency",
+            "width": 90,
+        },
+        {
+            "label": _("Balance Value"),
+            "fieldname": "balance_value",
+            "fieldtype": "Currency",
+            "width": 90,
+        },
+    ]

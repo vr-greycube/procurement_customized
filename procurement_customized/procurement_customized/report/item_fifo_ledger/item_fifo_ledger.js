@@ -2,7 +2,7 @@
 // For license information, please see license.txt
 /* eslint-disable */
 
-frappe.query_reports["Item Fifo Ledger"] = {
+frappe.query_reports["Item FIFO Ledger"] = {
   filters: [
     {
       fieldname: "item",
