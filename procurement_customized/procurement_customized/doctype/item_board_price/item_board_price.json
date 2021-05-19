@@ -29,6 +29,8 @@
   {
    "fieldname": "item",
    "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
    "label": "Item",
    "options": "Item",
    "reqd": 1,
@@ -103,6 +105,7 @@
   {
    "fieldname": "total_roundup",
    "fieldtype": "Currency",
+   "in_list_view": 1,
    "label": "Total Roundup",
    "precision": "0",
    "read_only": 1
@@ -129,6 +132,7 @@
   {
    "fieldname": "process_price_per_unit",
    "fieldtype": "Currency",
+   "in_list_view": 1,
    "label": "Process Price Per Unit",
    "precision": "3",
    "read_only": 1
@@ -136,6 +140,7 @@
   {
    "fieldname": "raw_material_per_unit",
    "fieldtype": "Currency",
+   "in_list_view": 1,
    "label": "Raw Material Per Unit",
    "precision": "3",
    "read_only": 1
@@ -145,7 +150,7 @@
    "fieldtype": "Column Break"
   }
  ],
- "modified": "2021-05-15 14:30:32.029879",
+ "modified": "2021-05-18 20:08:59.287962",
  "modified_by": "Administrator",
  "module": "Procurement Customized",
  "name": "Item Board Price",
