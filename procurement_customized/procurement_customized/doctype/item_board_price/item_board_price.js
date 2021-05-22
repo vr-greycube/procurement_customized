@@ -2,6 +2,10 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on("Item Board Price", {
+  board_price_per_kg: function (frm) {
+    frm.trigger("set_calculated_values");
+  },
+
   length: function (frm) {
     frm.trigger("set_calculated_values");
   },
