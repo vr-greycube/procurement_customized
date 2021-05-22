@@ -29,12 +29,12 @@ def get_data(filters):
         po.name po_name,
         poi.qty qty,
         poi.rate,
-        coalesce(rec.qty,0) received_qty,
-        poi.qty - coalesce(ste.utilized_qty,0) balance_qty, 
         poi.qty * poi.rate total_value,
+        coalesce(rec.qty,0) received_qty,
+        coalesce(rec.qty,0) - coalesce(ste.utilized_qty,0) balance_qty, 
         ste.utilized_qty,
         ste.utilized_po, 
-        ste.utilized_qty * poi.rate utilized_po_value,
+        coalesce(ste.utilized_qty,0) * poi.rate utilized_po_value,
         (poi.qty - coalesce(ste.utilized_qty,0)) * poi.rate balance_value
     from 
         `tabPurchase Order` po
@@ -136,6 +136,12 @@ def get_columns():
             "label": _("Cum. Balance"),
             "fieldname": "cum_balance_qty",
             "fieldtype": "Int",
+            "width": 90,
+        },
+        {
+            "label": _("Total PO Value"),
+            "fieldname": "total_value",
+            "fieldtype": "Currency",
             "width": 90,
         },
         {
