@@ -71,7 +71,6 @@ def get_data(filters):
     order by po.transaction_date, po.creation""",
         filters,
         as_dict=True,
-        debug=True,
     )
     cumulative_balance = 0
 
