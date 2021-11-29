@@ -35,15 +35,22 @@ frappe.ui.form.on("Item Board Price", {
   },
 
   set_calculated_values: function (frm) {
+
+    function roundto(value, ndecimals) {
+      return Number(Math.round(value + 'e' + ndecimals) + 'e-' + ndecimals);
+    }
+
     let doc = frm.doc,
       weight = doc.length * doc.breadth * doc.gsm * 144 * 0.0000001,
+      rounded_weight = roundto(weight, 1),
       actual_price_with_wastage =
-        ((doc.board_price_per_kg * weight) / 144 / doc.ups) *
+        ((doc.board_price_per_kg * rounded_weight) / 144 / doc.ups) *
         (1 + 0.01 * doc.wastage) *
         1000,
       total_price_actual_wastage_processing =
         actual_price_with_wastage + doc.processing_share,
-      total_roundup = Math.ceil(total_price_actual_wastage_processing),
+
+      total_roundup = Math.floor(total_price_actual_wastage_processing),
       total_with_fg_tax = total_roundup * (1 + 0.01 * doc.finished_goods_tax),
       process_price_per_unit =
         (total_with_fg_tax -
